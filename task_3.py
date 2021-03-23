@@ -27,3 +27,38 @@
 доступен по ссылке (https://pythonworld.ru/osnovy/peregruzka-operatorov.html).
 """
 
+class Cell:
+    def __init__(self, n):
+        self.num_c = n
+
+    def __str__(self):
+        return f"{self.num_c}"
+
+    def __add__(self, other):
+        return Cell(self.num_c + other.num_c)
+
+    def __sub__(self, other):
+        if self.num_c - other.num_c > 0:
+            return Cell(self.num_c - other.num_c)
+        else:
+            print("В первой клетке ячеек меньше чем во второй.")
+
+    def __mul__(self, other):
+        return Cell(self.num_c * other.num_c)
+
+    def __floordiv__(self, other):
+        return Cell(self.num_c // other.num_c)
+
+    def make_order(self, n):
+        return "\n".join(['*' * n for _ in range(self.num_c // n)]) + f'\n{"*" * (self.num_c % n)}'
+
+
+c1 = Cell(13)
+print(f"Колличество ячеек в первой клетке: {c1}")
+c2 = Cell(20)
+print(f"Колличество ячеек во второй клетке: {c2}")
+print(f"Сумма ячеек: {c1 + c2}")
+print(f"Разность ячеек: {c1 - c2}")
+print(f"Произведение ячеек: {c1 * c2}")
+print(f"Деление ячеек: {c1 // c2}")
+print(f"Расположение ячеек первой клетки:\n{c1.make_order(6)}")

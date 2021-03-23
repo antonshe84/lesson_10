@@ -9,3 +9,45 @@
 классы для основных классов проекта и проверить работу декоратора @property.
 """
 
+from abc import ABC, abstractmethod
+
+
+class Clothes(ABC):
+    out = 0
+
+    def __init__(self, s):
+        self.s = s
+
+    @property
+    @abstractmethod
+    def calculation(self):
+        pass
+
+    def __add__(self, other):
+        Clothes.out += self.calculation + other.calculation
+        return Costume(0)
+
+    def __str__(self):
+        return f"{Clothes.out}"
+
+
+class Coat(Clothes):
+    @property
+    def calculation(self):
+        return round(self.s / 6.5) + 0.5
+
+
+class Costume(Clothes):
+    @property
+    def calculation(self):
+        return round((2 * self.s + 0.3) / 100)
+
+
+palto_1 = Coat(50)
+palto_2 = Coat(48)
+kostum_1 = Costume(180)
+kostum_2 = Costume(175)
+sum_1 = palto_1 + kostum_1
+sum_1 += palto_2 + kostum_2
+print(f"Всего ткани требуется: {sum_1}")
+

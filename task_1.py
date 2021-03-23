@@ -86,3 +86,4 @@ print(f"Сумма матриц m3 и m2:")
 print(m3 + m2)
 
 print(type(m3 + m2))
+
